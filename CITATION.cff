@@ -4,7 +4,7 @@ authors:
 - family-names: "Molin"
   given-names: "Christopher"
   orcid: "https://orcid.org/0009-0002-1005-3942"
-title: "Ultimate Maven Repository"
-version: 0.2.0
-date-released: 2025-07-22
-url: "https://github.com/Chrimle/Ultimate-Maven-Repository"
+title: "FontMeter"
+version: 0.0.0
+date-released: 2025-10-13
+url: "https://github.com/Chrimle/FontMeter"

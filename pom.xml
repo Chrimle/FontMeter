@@ -5,17 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- === Project Coordinates === -->
-    <!-- TODO: Update accordingly -->
     <groupId>io.github.chrimle</groupId>
-    <artifactId>ultimate-maven-repository</artifactId>
-    <version>0.2.0</version>
+    <artifactId>fontmeter</artifactId>
+    <version>0.0.0</version>
     <packaging>jar</packaging>
 
     <!-- === Project Metadata === -->
-    <!-- TODO: Update accordingly -->
-    <name>Ultimate Maven Repository</name>
-    <description>The Ultimate Maven Repository Template for your GitHub projects!</description>
-    <url>https://chrimle.github.io/Ultimate-Maven-Repository</url>
+    <name>FontMeter</name>
+    <description>Font dimensions in constant time!</description>
+    <url>https://chrimle.github.io/FontMeter</url>
     <inceptionYear>2025</inceptionYear>
 
     <licenses>
@@ -27,13 +25,11 @@
     </licenses>
 
     <organization>
-        <!-- TODO: Update accordingly -->
-        <name>Ultimate Maven Repository</name>
-        <url>https://chrimle.github.io/Ultimate-Maven-Repository/</url>
+        <name>FontMeter</name>
+        <url>https://chrimle.github.io/FontMeter/</url>
     </organization>
 
     <developers>
-        <!-- TODO: Update accordingly -->
         <developer>
             <id>Chrimle</id>
             <name>Christopher Molin</name>
@@ -46,23 +42,21 @@
     </developers>
 
     <scm>
-        <!-- TODO: Update Accordingly-->
-        <url>http://github.com/chrimle/ultimate-maven-repository/tree/main</url>
-        <connection>scm:git:git://github.com/chrimle/ultimate-maven-repository.git</connection>
-        <developerConnection>scm:git:ssh://github.com:chrimle/ultimate-maven-repository.git</developerConnection>
+        <url>http://github.com/chrimle/fontmeter/tree/main</url>
+        <connection>scm:git:git://github.com/chrimle/fontmeter.git</connection>
+        <developerConnection>scm:git:ssh://github.com:chrimle/fontmeter.git</developerConnection>
     </scm>
 
     <distributionManagement>
-        <!-- TODO: Update Accordingly -->
         <repository>
             <id>github</id>
             <name>GitHub Chrimle Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/chrimle/ultimate-maven-repository</url>
+            <url>https://maven.pkg.github.com/chrimle/fontmeter</url>
         </repository>
         <snapshotRepository>
             <id>github</id>
             <name>GitHub Chrimle Apache Maven Snapshot Packages</name>
-            <url>https://maven.pkg.github.com/chrimle/ultimate-maven-repository</url>
+            <url>https://maven.pkg.github.com/chrimle/fontmeter</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -71,10 +65,9 @@
         <!-- === Meta Properties === -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- === Maven Compiler === -->
-        <!-- TODO: Update accordingly -->
-        <maven.compiler.release>17</maven.compiler.release>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <!-- === Spotless === -->
         <spotless.check.skip>false</spotless.check.skip>
         <spotless-maven-plugin.version>3.0.0</spotless-maven-plugin.version>
