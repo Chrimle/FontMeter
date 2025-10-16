@@ -49,7 +49,7 @@ public sealed interface IFontMetrics permits FontMetrics {
    * allowing {@link Character}-widths to be calculated <em>ahead-of-time</em>, before the {@link
    * IFontMetrics}-instance has completed the instantiation. This <em>step</em> allows configuring
    * the {@link IFontMetrics}, to balance <strong>memory-footprint</strong> and
-   * <strong>lookup-performance</strong>, according to the available resources and uses-cases.
+   * <strong>lookup-performance</strong>, according to the available resources and use-cases.
    *
    * @since 0.1.0
    * @author Chrimle
@@ -60,14 +60,54 @@ public sealed interface IFontMetrics permits FontMetrics {
      * IFontMetrics}-instance with only a single {@code fontSize} pre-calculated - namely, the
      * {@code baselineMap}.
      *
-     * @since 0.1.0
      * @return <em>this</em> builder.
+     * @since 0.1.0
      */
     OnDemandCalculateStep skipPreCalculation();
   }
 
+  /**
+   * The <em>Builder</em>-step for configuring <em>"on-demand"</em> calculations of widths.
+   * Effectively, allowing {@link Character}-widths to be calculated <em>on-demand</em>, whenever
+   * the {@link IFontMetrics} does not have the widths for a given {@code fontSize} calculated. This
+   * <em>step</em> allows configuring {@link IFontMetrics}, to balance
+   * <strong>memory-footprint</strong> and <strong>lookup-performance</strong>, according to the
+   * available resources and use-cases.
+   *
+   * @since 0.1.0
+   * @author Chrimle
+   */
   interface OnDemandCalculateStep {
+    /**
+     * Disables <em>"on-demand"</em> calculations of widths. This will result in an {@link
+     * IFontMetrics}-instance which can <strong>only</strong> resolve {@link Character}-widths for
+     * <em>pre-calculated</em> {@code fontSize}s. The resulting {@link IFontMetrics} will
+     * <strong>not</strong> <em>calculate</em> and <em>cache</em> {@link Character}-widths.
+     *
+     * <p>A common use-case for this option, is when <strong>all expected</strong> {@code fontSize}s
+     * have been <em>pre-calculated</em>.
+     *
+     * @return <em>this</em> builder.
+     * @since 0.1.0
+     * @see #enableOnDemandCalculations() Enabling "on-demand" calculations without caching.
+     */
     BuildStep disableOnDemandCalculations();
+
+    /**
+     * Enables <em>"on-demand"</em> calculating of widths, <strong>without caching the
+     * results</strong>. This will result in an {@link IFontMetrics}-instance which may resolve the
+     * width of any supported {@link Character}, but may do so at lesser performance for {@code
+     * fontSize}s which have not been pre-calculated and cached.
+     *
+     * <p>A common use-case for this option, is when the <strong>vast majority of expected</strong>
+     * {@code fontSize}s have been <em>pre-calculated</em>, but some expected {@code fontSize}s are
+     * exceptionally rare and do not warrant being cached.
+     *
+     * @return <em>this</em> builder.
+     * @since 0.1.0
+     * @see #disableOnDemandCalculations() Disabling "on-demand" calculations.
+     */
+    BuildStep enableOnDemandCalculations();
 
     BuildStep enableLimitedOnDemandCalculations(final int limit);
 

@@ -39,6 +39,11 @@ public final class FontMetrics implements IFontMetrics {
     }
 
     @Override
+    public BuildStep enableOnDemandCalculations() {
+      return this;
+    }
+
+    @Override
     public IFontMetrics.BuildStep enableLimitedOnDemandCalculations(int limit) {
       return this;
     }
