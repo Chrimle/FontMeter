@@ -44,7 +44,25 @@ public sealed interface IFontMetrics permits FontMetrics {
         throws IllegalArgumentException;
   }
 
+  /**
+   * The <em>Builder</em>-step for configuring <em>"pre-calculating"</em> widths. Effectively,
+   * allowing {@link Character}-widths to be calculated <em>ahead-of-time</em>, before the {@link
+   * IFontMetrics}-instance has completed the instantiation. This <em>step</em> allows configuring
+   * the {@link IFontMetrics}, to balance <strong>memory-footprint</strong> and
+   * <strong>lookup-performance</strong>, according to the available resources and uses-cases.
+   *
+   * @since 0.1.0
+   * @author Chrimle
+   */
   interface PreCalculateStep {
+    /**
+     * Skips the <em>"pre-calculation" step</em>, which will result in an {@link
+     * IFontMetrics}-instance with only a single {@code fontSize} pre-calculated - namely, the
+     * {@code baselineMap}.
+     *
+     * @since 0.1.0
+     * @return <em>this</em> builder.
+     */
     OnDemandCalculateStep skipPreCalculation();
   }
 
