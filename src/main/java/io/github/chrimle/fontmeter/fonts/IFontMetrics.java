@@ -109,7 +109,9 @@ public sealed interface IFontMetrics permits FontMetrics {
      */
     BuildStep enableOnDemandCalculations();
 
-    BuildStep enableLimitedOnDemandCalculations(final int limit);
+    BuildStep enableOnDemandCalculationsWithFifoCache(final int cacheSizeLimit);
+
+    BuildStep enableOnDemandCalculationsWithPopularityCache(final int cacheSizeLimit);
 
     BuildStep enableUnlimitedOnDemandCalculations();
   }
