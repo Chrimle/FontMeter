@@ -54,7 +54,7 @@ public final class FontMetrics implements IFontMetrics {
     }
 
     @Override
-    public IFontMetrics.BuildStep enableUnlimitedOnDemandCalculations() {
+    public IFontMetrics.BuildStep enableOnDemandCalculationsWithUnlimitedCache() {
       return this;
     }
 

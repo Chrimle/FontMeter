@@ -157,7 +157,7 @@ public sealed interface IFontMetrics permits FontMetrics {
     BuildStep enableOnDemandCalculationsWithPopularityCache(final int onDemandCacheSizeLimit)
         throws IllegalArgumentException;
 
-    BuildStep enableUnlimitedOnDemandCalculations();
+    BuildStep enableOnDemandCalculationsWithUnlimitedCache();
   }
 
   interface BuildStep {
