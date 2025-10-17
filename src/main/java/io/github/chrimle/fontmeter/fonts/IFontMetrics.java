@@ -125,11 +125,13 @@ public sealed interface IFontMetrics permits FontMetrics {
      *     evicted in favour of the most recently calculated width. This value relates to the
      *     "on-demand" cache only, and should not include the number of pre-calculated entries.
      * @return <em>this</em> builder.
+     * @throws IllegalArgumentException if {@code onDemandCacheSizeLimit} is negative, or zero.
      * @since 0.1.0
      * @see #enableOnDemandCalculationsWithPopularityCache(int) Enabling "on-demand" calculations
      *     with Popularity-based Cache Eviction.
      */
-    BuildStep enableOnDemandCalculationsWithFifoCache(final int onDemandCacheSizeLimit);
+    BuildStep enableOnDemandCalculationsWithFifoCache(final int onDemandCacheSizeLimit)
+        throws IllegalArgumentException;
 
     /**
      * Enables <em>"on-demand"</em> calculations of widths, using a <em>Popularity-based (read
@@ -147,11 +149,13 @@ public sealed interface IFontMetrics permits FontMetrics {
      *     is evicted in favour of the most recently calculated width. This value relates to the
      *     "on-demand" cache only, and should not include the number of pre-calculated entries.
      * @return <em>this</em> builder.
+     * @throws IllegalArgumentException if {@code onDemandCacheSizeLimit} is negative, or zero.
      * @since 0.1.0
      * @see #enableOnDemandCalculationsWithFifoCache(int) Enabling "on-demand" calculations with
      *     FIFO-based Cache Eviction.
      */
-    BuildStep enableOnDemandCalculationsWithPopularityCache(final int onDemandCacheSizeLimit);
+    BuildStep enableOnDemandCalculationsWithPopularityCache(final int onDemandCacheSizeLimit)
+        throws IllegalArgumentException;
 
     BuildStep enableUnlimitedOnDemandCalculations();
   }
