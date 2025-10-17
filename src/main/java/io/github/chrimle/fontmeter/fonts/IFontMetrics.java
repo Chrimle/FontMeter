@@ -114,8 +114,8 @@ public sealed interface IFontMetrics permits FontMetrics {
      * (<strong>FIFO</strong>)</em> cache eviction strategy, when the cache-size exceeds {@code
      * onDemandCacheSizeLimit}. This will result in an {@link IFontMetrics}-instance which may
      * resolve the width of any supported {@link Character}, and will cache the results. If the size
-     * of the cache exceeds {@code onDemandCacheSizeLimit}, the <em>oldest</em> "on-demand" result
-     * will be removed.
+     * of the cache exceeds {@code onDemandCacheSizeLimit}, the <em>oldest</em> "on-demand"
+     * cache-entry will be removed.
      *
      * <p>A common use-case for this option, is when the <strong>vast majority of expected</strong>
      * {@code fontSize}s have been <em>pre-calculated</em>, and where all other {@code fontSize}s
@@ -131,6 +131,26 @@ public sealed interface IFontMetrics permits FontMetrics {
      */
     BuildStep enableOnDemandCalculationsWithFifoCache(final int onDemandCacheSizeLimit);
 
+    /**
+     * Enables <em>"on-demand"</em> calculations of widths, using a <em>Popularity-based (read
+     * count)</em> cache eviction strategy, when the cache-size exceeds {@code
+     * onDemandCacheSizeLimit}. This will result in an {@link IFontMetrics}-instance which may
+     * resolve the width of any supported {@link Character}, and will cache the results. If the size
+     * of the cache exceeds {@code onDemandCacheSizeLimit}, the <em>least popular (read the
+     * least)</em> "on-demand" cache-entry will be removed from the "on-demand" cache.
+     *
+     * <p>A common use-case for this option, is when the <strong>vast majority of expected</strong>
+     * {@code fontSize}s have been <em>pre-calculated</em>, and where the occurrence-rates of other
+     * {@code fontSize}s are unknown and/or not equally common.
+     *
+     * @param onDemandCacheSizeLimit at which point the <strong>least popular</strong> cache entry
+     *     is evicted in favour of the most recently calculated width. This value relates to the
+     *     "on-demand" cache only, and should not include the number of pre-calculated entries.
+     * @return <em>this</em> builder.
+     * @since 0.1.0
+     * @see #enableOnDemandCalculationsWithFifoCache(int) Enabling "on-demand" calculations with
+     *     FIFO-based Cache Eviction.
+     */
     BuildStep enableOnDemandCalculationsWithPopularityCache(final int onDemandCacheSizeLimit);
 
     BuildStep enableUnlimitedOnDemandCalculations();
