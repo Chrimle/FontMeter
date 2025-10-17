@@ -44,12 +44,12 @@ public final class FontMetrics implements IFontMetrics {
     }
 
     @Override
-    public BuildStep enableOnDemandCalculationsWithFifoCache(int cacheSizeLimit) {
+    public BuildStep enableOnDemandCalculationsWithFifoCache(int onDemandCacheSizeLimit) {
       return this;
     }
 
     @Override
-    public BuildStep enableOnDemandCalculationsWithPopularityCache(int cacheSizeLimit) {
+    public BuildStep enableOnDemandCalculationsWithPopularityCache(int onDemandCacheSizeLimit) {
       return this;
     }
 

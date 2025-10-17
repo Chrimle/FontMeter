@@ -94,7 +94,7 @@ public sealed interface IFontMetrics permits FontMetrics {
     BuildStep disableOnDemandCalculations();
 
     /**
-     * Enables <em>"on-demand"</em> calculating of widths, <strong>without caching the
+     * Enables <em>"on-demand"</em> calculations of widths, <strong>without caching the
      * results</strong>. This will result in an {@link IFontMetrics}-instance which may resolve the
      * width of any supported {@link Character}, but may do so at lesser performance for {@code
      * fontSize}s which have not been pre-calculated and cached.
@@ -109,9 +109,29 @@ public sealed interface IFontMetrics permits FontMetrics {
      */
     BuildStep enableOnDemandCalculations();
 
-    BuildStep enableOnDemandCalculationsWithFifoCache(final int cacheSizeLimit);
+    /**
+     * Enables <em>"on-demand"</em> calculations of widths, using a <em>First-In-First-Out
+     * (<strong>FIFO</strong>)</em> cache eviction strategy, when the cache-size exceeds {@code
+     * onDemandCacheSizeLimit}. This will result in an {@link IFontMetrics}-instance which may
+     * resolve the width of any supported {@link Character}, and will cache the results. If the size
+     * of the cache exceeds {@code onDemandCacheSizeLimit}, the <em>oldest</em> "on-demand" result
+     * will be removed.
+     *
+     * <p>A common use-case for this option, is when the <strong>vast majority of expected</strong>
+     * {@code fontSize}s have been <em>pre-calculated</em>, and where all other {@code fontSize}s
+     * are equally common.
+     *
+     * @param onDemandCacheSizeLimit at which point the <strong>oldest</strong> cache entry is
+     *     evicted in favour of the most recently calculated width. This value relates to the
+     *     "on-demand" cache only, and should not include the number of pre-calculated entries.
+     * @return <em>this</em> builder.
+     * @since 0.1.0
+     * @see #enableOnDemandCalculationsWithPopularityCache(int) Enabling "on-demand" calculations
+     *     with Popularity-based Cache Eviction.
+     */
+    BuildStep enableOnDemandCalculationsWithFifoCache(final int onDemandCacheSizeLimit);
 
-    BuildStep enableOnDemandCalculationsWithPopularityCache(final int cacheSizeLimit);
+    BuildStep enableOnDemandCalculationsWithPopularityCache(final int onDemandCacheSizeLimit);
 
     BuildStep enableUnlimitedOnDemandCalculations();
   }
