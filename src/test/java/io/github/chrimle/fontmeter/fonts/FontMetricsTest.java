@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Map;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -35,6 +36,27 @@ class FontMetricsTest {
           final var builder = FontMetrics.builder();
           final var baselineMap = Map.of('a', 42d);
           assertDoesNotThrow(() -> builder.setBaseline(fontSize, baselineMap));
+        }
+
+        @Test
+        void testNullBaselineMapThrows() {
+          final var builder = FontMetrics.builder();
+          final var fontSize = 42;
+          final var exception =
+              assertThrows(
+                  IllegalArgumentException.class, () -> builder.setBaseline(fontSize, null));
+          assertEquals("`baselineMap` MUST not be `null`", exception.getMessage());
+        }
+
+        @Test
+        void testEmptyBaselineMapThrows() {
+          final var builder = FontMetrics.builder();
+          final var fontSize = 42;
+          final Map<Character, Double> baselineMap = Map.of();
+          final var exception =
+              assertThrows(
+                  IllegalArgumentException.class, () -> builder.setBaseline(fontSize, baselineMap));
+          assertEquals("`baselineMap` MUST not be empty", exception.getMessage());
         }
       }
     }
