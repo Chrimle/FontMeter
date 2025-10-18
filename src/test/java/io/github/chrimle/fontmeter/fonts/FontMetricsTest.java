@@ -13,6 +13,17 @@ class FontMetricsTest {
   @Nested
   class FontMetricsBuilderTests {
 
+    @Test
+    void testInstantiation() {
+      final var fontMetrics =
+          FontMetrics.builder()
+              .setBaseline(7, Map.of('a', 42d))
+              .skipPreCalculation()
+              .disableOnDemandCalculations()
+              .build();
+      assertNotNull(fontMetrics);
+    }
+
     @Nested
     class BaselineStepTests {
 
