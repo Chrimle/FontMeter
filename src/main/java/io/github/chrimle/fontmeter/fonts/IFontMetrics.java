@@ -63,7 +63,9 @@ public sealed interface IFontMetrics permits FontMetrics {
      * @return <em>this</em> builder.
      * @since 0.1.0
      */
-    OnDemandCalculateStep skipPreCalculation();
+    default OnDemandCalculateStep skipPreCalculation() {
+      return (OnDemandCalculateStep) this;
+    }
   }
 
   /**
@@ -91,7 +93,9 @@ public sealed interface IFontMetrics permits FontMetrics {
      * @see #enableOnDemandCalculations() Enabling "on-demand" calculations without caching.
      * @since 0.1.0
      */
-    BuildStep disableOnDemandCalculations();
+    default BuildStep disableOnDemandCalculations() {
+      return (BuildStep) this;
+    }
 
     /**
      * Enables <em>"on-demand"</em> calculations of widths, <strong>without caching the
