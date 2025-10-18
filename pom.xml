@@ -7,7 +7,7 @@
     <!-- === Project Coordinates === -->
     <groupId>io.github.chrimle</groupId>
     <artifactId>fontmeter</artifactId>
-    <version>0.0.0</version>
+    <version>0.1.0-alpha.1</version>
     <packaging>jar</packaging>
 
     <!-- === Project Metadata === -->
@@ -77,10 +77,18 @@
         <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
         <central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
         <!-- === Dependency Versions === -->
+        <junit-jupiter.version>6.0.0</junit-jupiter.version>
     </properties>
 
     <!-- === Dependencies === -->
-    <dependencies/>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <!-- === Build Plugins === -->
     <build>
