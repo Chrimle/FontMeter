@@ -6,8 +6,8 @@ import java.util.Map;
  * Just an abstraction-layer for {@link FontMetrics}. Contains the interfaces for the {@link
  * FontMetrics}-builder class.
  *
- * @since 0.1.0
  * @author Chrimle
+ * @since 0.1.0
  */
 public sealed interface IFontMetrics permits FontMetrics {
 
@@ -20,8 +20,8 @@ public sealed interface IFontMetrics permits FontMetrics {
    * <strong>enabled</strong>, this <em>baseline</em> will be used to compute the {@link
    * Character}-widths with other <em>font-sizes</em>.
    *
-   * @since 0.1.0
    * @author Chrimle
+   * @since 0.1.0
    */
   interface BaselineStep {
     /**
@@ -51,8 +51,8 @@ public sealed interface IFontMetrics permits FontMetrics {
    * the {@link IFontMetrics}, to balance <strong>memory-footprint</strong> and
    * <strong>lookup-performance</strong>, according to the available resources and use-cases.
    *
-   * @since 0.1.0
    * @author Chrimle
+   * @since 0.1.0
    */
   interface PreCalculateStep {
     /**
@@ -74,8 +74,8 @@ public sealed interface IFontMetrics permits FontMetrics {
    * <strong>memory-footprint</strong> and <strong>lookup-performance</strong>, according to the
    * available resources and use-cases.
    *
-   * @since 0.1.0
    * @author Chrimle
+   * @since 0.1.0
    */
   interface OnDemandCalculateStep {
     /**
@@ -88,8 +88,8 @@ public sealed interface IFontMetrics permits FontMetrics {
      * have been <em>pre-calculated</em>.
      *
      * @return <em>this</em> builder.
-     * @since 0.1.0
      * @see #enableOnDemandCalculations() Enabling "on-demand" calculations without caching.
+     * @since 0.1.0
      */
     BuildStep disableOnDemandCalculations();
 
@@ -104,8 +104,8 @@ public sealed interface IFontMetrics permits FontMetrics {
      * exceptionally rare and do not warrant being cached.
      *
      * @return <em>this</em> builder.
-     * @since 0.1.0
      * @see #disableOnDemandCalculations() Disabling "on-demand" calculations.
+     * @since 0.1.0
      */
     BuildStep enableOnDemandCalculations();
 
@@ -126,9 +126,9 @@ public sealed interface IFontMetrics permits FontMetrics {
      *     "on-demand" cache only, and should not include the number of pre-calculated entries.
      * @return <em>this</em> builder.
      * @throws IllegalArgumentException if {@code onDemandCacheSizeLimit} is negative, or zero.
-     * @since 0.1.0
      * @see #enableOnDemandCalculationsWithPopularityCache(int) Enabling "on-demand" calculations
      *     with Popularity-based Cache Eviction.
+     * @since 0.1.0
      */
     BuildStep enableOnDemandCalculationsWithFifoCache(final int onDemandCacheSizeLimit)
         throws IllegalArgumentException;
@@ -150,9 +150,9 @@ public sealed interface IFontMetrics permits FontMetrics {
      *     "on-demand" cache only, and should not include the number of pre-calculated entries.
      * @return <em>this</em> builder.
      * @throws IllegalArgumentException if {@code onDemandCacheSizeLimit} is negative, or zero.
-     * @since 0.1.0
      * @see #enableOnDemandCalculationsWithFifoCache(int) Enabling "on-demand" calculations with
      *     FIFO-based Cache Eviction.
+     * @since 0.1.0
      */
     BuildStep enableOnDemandCalculationsWithPopularityCache(final int onDemandCacheSizeLimit)
         throws IllegalArgumentException;
@@ -170,16 +170,29 @@ public sealed interface IFontMetrics permits FontMetrics {
      * that the number of unique {@code fontSize}s are limited.
      *
      * @return <em>this</em> builder.
-     * @since 0.1.0
      * @see #enableOnDemandCalculationsWithFifoCache(int) Enabling "on-demand" calculations with
      *     FIFO-based Cache Eviction.
      * @see #enableOnDemandCalculationsWithPopularityCache(int) Enabling "on-demand" calculations
      *     with Popularity-based Cache Eviction.
+     * @since 0.1.0
      */
     BuildStep enableOnDemandCalculationsWithUnlimitedCache();
   }
 
+  /**
+   * The <em>Builder</em>-step for <em>building</em> the {@link IFontMetrics}-instance, according to
+   * the options set in previous builder-steps.
+   *
+   * @since 0.1.0
+   * @author Chrimle
+   */
   interface BuildStep {
+    /**
+     * Builds the {@link IFontMetrics}-instance.
+     *
+     * @return the new {@link IFontMetrics}-instance.
+     * @since 0.1.0
+     */
     IFontMetrics build();
   }
 }
