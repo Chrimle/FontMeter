@@ -3,6 +3,14 @@ package io.github.chrimle.fontmeter.fonts;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Represents a <em>font</em>, and its <em>metrics (width)</em> for each supported {@link Character}
+ * and {@code fontSize}.
+ *
+ * @see #builder() To build a FontMetrics-instance.
+ * @since 0.1.0
+ * @author Chrimle
+ */
 public final class FontMetrics implements IFontMetrics {
 
   private final ConcurrentHashMap<Integer, Map<Character, Double>> fontSizeMap;
