@@ -16,6 +16,13 @@ public final class FontMetrics implements IFontMetrics {
     return FontMetricsBuilder.newInstance();
   }
 
+  /**
+   * <em>Builder-class</em> for {@link FontMetrics}-instances.
+   *
+   * @see FontMetrics#builder() To instantiate a new FontMetricsBuilder.
+   * @since 0.1.0
+   * @author Chrimle
+   */
   public static final class FontMetricsBuilder
       implements BaselineStep, PreCalculateStep, OnDemandCalculateStep, BuildStep {
 
