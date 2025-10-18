@@ -20,6 +20,12 @@ public final class FontMetrics implements IFontMetrics {
     fontSizeMap.put(baseFontSize, baselineMap);
   }
 
+  /**
+   * Instantiates a {@link FontMetricsBuilder}-instance for building a {@link FontMetrics}-instance.
+   *
+   * @return a new {@link FontMetricsBuilder}-instance.
+   * @since 0.1.0
+   */
   public static BaselineStep builder() {
     return FontMetricsBuilder.newInstance();
   }
