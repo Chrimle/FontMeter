@@ -107,7 +107,9 @@ public sealed interface IFontMetrics permits FontMetrics {
      * @see #disableOnDemandCalculations() Disabling "on-demand" calculations.
      * @since 0.1.0
      */
-    BuildStep enableOnDemandCalculations();
+    default BuildStep enableOnDemandCalculations() {
+      throw new UnsupportedOperationException("Not implemented yet");
+    }
 
     /**
      * Enables <em>"on-demand"</em> calculations of widths, using a <em>First-In-First-Out
@@ -130,8 +132,10 @@ public sealed interface IFontMetrics permits FontMetrics {
      *     with Popularity-based Cache Eviction.
      * @since 0.1.0
      */
-    BuildStep enableOnDemandCalculationsWithFifoCache(final int onDemandCacheSizeLimit)
-        throws IllegalArgumentException;
+    default BuildStep enableOnDemandCalculationsWithFifoCache(final int onDemandCacheSizeLimit)
+        throws IllegalArgumentException {
+      throw new UnsupportedOperationException("Not implemented yet");
+    }
 
     /**
      * Enables <em>"on-demand"</em> calculations of widths, using a <em>Popularity-based (read
@@ -154,8 +158,10 @@ public sealed interface IFontMetrics permits FontMetrics {
      *     FIFO-based Cache Eviction.
      * @since 0.1.0
      */
-    BuildStep enableOnDemandCalculationsWithPopularityCache(final int onDemandCacheSizeLimit)
-        throws IllegalArgumentException;
+    default BuildStep enableOnDemandCalculationsWithPopularityCache(
+        final int onDemandCacheSizeLimit) throws IllegalArgumentException {
+      throw new UnsupportedOperationException("Not implemented yet");
+    }
 
     /**
      * Enables <em>"on-demand"</em> calculations of widths, using an
@@ -176,7 +182,9 @@ public sealed interface IFontMetrics permits FontMetrics {
      *     with Popularity-based Cache Eviction.
      * @since 0.1.0
      */
-    BuildStep enableOnDemandCalculationsWithUnlimitedCache();
+    default BuildStep enableOnDemandCalculationsWithUnlimitedCache() {
+      throw new UnsupportedOperationException("Not implemented yet");
+    }
   }
 
   /**
