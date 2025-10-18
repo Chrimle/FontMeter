@@ -157,6 +157,25 @@ public sealed interface IFontMetrics permits FontMetrics {
     BuildStep enableOnDemandCalculationsWithPopularityCache(final int onDemandCacheSizeLimit)
         throws IllegalArgumentException;
 
+    /**
+     * Enables <em>"on-demand"</em> calculations of widths, using an
+     * <strong>unlimited/unbounded</strong> cache size. This will result in an {@link
+     * IFontMetrics}-instance which may resolve the width of any supported {@link Character}, and
+     * will cache the results.
+     *
+     * <p>A common use-case for this option, is when <em>memory-footprint</em> is not of concern,
+     * and the number of unique {@code fontSize}s is a known <em>limited</em> amount.
+     *
+     * <p><strong>NOTE:</strong> Use at own risk, consider using limited caches instead, or ensure
+     * that the number of unique {@code fontSize}s are limited.
+     *
+     * @return <em>this</em> builder.
+     * @since 0.1.0
+     * @see #enableOnDemandCalculationsWithFifoCache(int) Enabling "on-demand" calculations with
+     *     FIFO-based Cache Eviction.
+     * @see #enableOnDemandCalculationsWithPopularityCache(int) Enabling "on-demand" calculations
+     *     with Popularity-based Cache Eviction.
+     */
     BuildStep enableOnDemandCalculationsWithUnlimitedCache();
   }
 
