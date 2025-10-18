@@ -39,26 +39,6 @@ public final class FontMetrics implements IFontMetrics {
     }
 
     @Override
-    public BuildStep enableOnDemandCalculations() {
-      return this;
-    }
-
-    @Override
-    public BuildStep enableOnDemandCalculationsWithFifoCache(int onDemandCacheSizeLimit) {
-      return this;
-    }
-
-    @Override
-    public BuildStep enableOnDemandCalculationsWithPopularityCache(int onDemandCacheSizeLimit) {
-      return this;
-    }
-
-    @Override
-    public IFontMetrics.BuildStep enableOnDemandCalculationsWithUnlimitedCache() {
-      return this;
-    }
-
-    @Override
     public IFontMetrics build() {
       return new FontMetrics();
     }
