@@ -7,7 +7,7 @@
     <!-- === Project Coordinates === -->
     <groupId>io.github.chrimle</groupId>
     <artifactId>fontmeter</artifactId>
-    <version>0.0.0</version>
+    <version>0.1.0-alpha.1</version>
     <packaging>jar</packaging>
 
     <!-- === Project Metadata === -->
