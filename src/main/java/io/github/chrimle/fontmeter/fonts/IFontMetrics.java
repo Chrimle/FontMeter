@@ -12,6 +12,42 @@ import java.util.Map;
 public sealed interface IFontMetrics permits FontMetrics {
 
   /**
+   * Gets the <strong>width</strong> of the given {@code character} and {@code fontSize}. If the
+   * {@code character} is not supported, {@code null} is returned. If the <strong>width</strong>
+   * cannot be determined, by not having it pre-calculated, or if <em>this instance</em> does not
+   * support "on-demand" calculations, then {@code null} is returned.
+   *
+   * @param character to get the <strong>width</strong> of. <strong>MUST NOT</strong> be {@code
+   *     null}.
+   * @param fontSize of the {@code character}. <strong>MUST</strong> be positive.
+   * @return the width of the {@code character}, in <em>points (pt)</em>. <strong>MAY</strong> be
+   *     {@code null} if the {@code width} cannot be determined.
+   * @throws NullPointerException if {@code character} is {@code null}.
+   * @throws IllegalArgumentException if {@code fontSize} is negative, or zero.
+   * @since 0.1.0
+   */
+  default Double getNullableCharacterWidth(final Character character, final int fontSize)
+      throws NullPointerException, IllegalArgumentException {
+    return getNullableCharacterWidth(character.charValue(), fontSize);
+  }
+
+  /**
+   * Gets the <strong>width</strong> of the given {@code character} and {@code fontSize}. If the
+   * {@code character} is not supported, {@code null} is returned. If the <strong>width</strong>
+   * cannot be determined, by not having it pre-calculated, or if <em>this instance</em> does not
+   * support "on-demand" calculations, then {@code null} is returned.
+   *
+   * @param character to get the <strong>width</strong> of.
+   * @param fontSize of the {@code character}. <strong>MUST</strong> be positive.
+   * @return the width of the {@code character}, in <em>points (pt)</em>. <strong>MAY</strong> be
+   *     {@code null} if the {@code width} cannot be determined.
+   * @throws IllegalArgumentException if {@code fontSize} is negative, or zero.
+   * @since 0.1.0
+   */
+  Double getNullableCharacterWidth(final char character, final int fontSize)
+      throws IllegalArgumentException;
+
+  /**
    * The <em>Builder</em>-step for configuring the <em>baseline</em> for {@link IFontMetrics}. The
    * <em>baseline</em> is a {@link Map} of supported {@link Character}s and their respective
    * <em>widths</em> (in points {@code pt}).
