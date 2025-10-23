@@ -31,6 +31,25 @@ public final class FontMetrics implements IFontMetrics {
   }
 
   /**
+   * {@inheritDoc}
+   *
+   * @param character to get the <strong>width</strong> of.
+   * @param fontSize of the {@code character}. <strong>MUST</strong> be positive.
+   * @return the width of the {@code character}, in <em>points (pt)</em>. <strong>MAY</strong> be
+   *     {@code null} if the {@code width} cannot be determined.
+   * @throws IllegalArgumentException if {@code fontSize} is negative, or zero.
+   * @since 0.1.0
+   */
+  @Override
+  public Double getNullableCharacterWidth(char character, int fontSize)
+      throws IllegalArgumentException {
+    if (fontSize < 1) throw new IllegalArgumentException("`fontSize` MUST be positive");
+    final var widthMap = fontSizeMap.get(fontSize);
+    if (widthMap == null) return null;
+    return widthMap.get(character);
+  }
+
+  /**
    * <em>Builder-class</em> for {@link FontMetrics}-instances.
    *
    * @see FontMetrics#builder() To instantiate a new FontMetricsBuilder.
