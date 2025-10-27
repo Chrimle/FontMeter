@@ -1,6 +1,7 @@
 package io.github.chrimle.fontmeter.fonts;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Just an abstraction-layer for {@link FontMetrics}. Contains the interfaces for the {@link
@@ -46,6 +47,46 @@ public sealed interface IFontMetrics permits FontMetrics {
    */
   Double getNullableCharacterWidth(final char character, final int fontSize)
       throws IllegalArgumentException;
+
+  /**
+   * Gets the <strong>width</strong> of the given {@code character} and {@code fontSize}. If the
+   * {@code character} is not supported, {@link Optional#empty()} is returned. if the
+   * <strong>width</strong> cannot be determined, by not having it pre-calculated, or if <em>this
+   * instance</em> does not support "on-demand" calculations, then {@link Optional#empty()} is
+   * returned.
+   *
+   * @param character to get the <strong>width</strong> of. <strong>MUST NOT</strong> be {@code
+   *     null}.
+   * @param fontSize of the {@code character}. <strong>MUST</strong> be positive.
+   * @return the width of the {@code character}, in <em>points (pt)</em>. <strong>MAY</strong> be
+   *     {@link Optional#empty()} if the {@code width} cannot be determined.
+   * @throws NullPointerException if {@code character} is {@code null}.
+   * @throws IllegalArgumentException if {@code fontSize} is negative, or zero.
+   * @since 0.1.0
+   */
+  default Optional<Double> getOptionalCharacterWidth(
+      final Character character, final int fontSize) {
+    return getOptionalCharacterWidth(character.charValue(), fontSize);
+  }
+
+  /**
+   * Gets the <strong>width</strong> of the given {@code character} and {@code fontSize}. If the
+   * {@code character} is not supported, {@link Optional#empty()} is returned. if the
+   * <strong>width</strong> cannot be determined, by not having it pre-calculated, or if <em>this
+   * instance</em> does not support "on-demand" calculations, then {@link Optional#empty()} is
+   * returned.
+   *
+   * @param character to get the <strong>width</strong> of. <strong>MUST NOT</strong> be {@code
+   *     null}.
+   * @param fontSize of the {@code character}. <strong>MUST</strong> be positive.
+   * @return the width of the {@code character}, in <em>points (pt)</em>. <strong>MAY</strong> be
+   *     {@link Optional#empty()} if the {@code width} cannot be determined.
+   * @throws IllegalArgumentException if {@code fontSize} is negative, or zero.
+   * @since 0.1.0
+   */
+  default Optional<Double> getOptionalCharacterWidth(final char character, final int fontSize) {
+    return Optional.ofNullable(getNullableCharacterWidth(character, fontSize));
+  }
 
   /**
    * The <em>Builder</em>-step for configuring the <em>baseline</em> for {@link IFontMetrics}. The
