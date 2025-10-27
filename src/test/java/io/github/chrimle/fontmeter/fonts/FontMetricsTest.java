@@ -135,4 +135,67 @@ class FontMetricsTest {
       }
     }
   }
+
+  @Nested
+  class GetOptionalCharacterWidthTests {
+
+    private final IFontMetrics fontMetrics =
+        FontMetrics.builder()
+            .setBaseline(7, Map.of('x', 42d))
+            .skipPreCalculation()
+            .disableOnDemandCalculations()
+            .build();
+
+    @Nested
+    class CharacterTests {
+      @Test
+      void testNullCharacterThrowsNPE() {
+        assertThrows(
+            NullPointerException.class, () -> fontMetrics.getOptionalCharacterWidth(null, 7));
+      }
+
+      @Test
+      void testUnsupportedCharacterReturnsEmpty() {
+        assertTrue(fontMetrics.getOptionalCharacterWidth('z', 7).isEmpty());
+      }
+
+      @Test
+      void testSupportedCharacterReturnsExpectedWidth() {
+        assertEquals(42d, fontMetrics.getOptionalCharacterWidth('x', 7).orElseThrow());
+      }
+    }
+
+    @Nested
+    class FontSizeTests {
+      @ParameterizedTest
+      @ValueSource(ints = {Integer.MIN_VALUE, -42, -7, -1})
+      void testNegativeFontSizeThrowsIAE(final int fontSize) {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> fontMetrics.getOptionalCharacterWidth('x', fontSize));
+      }
+
+      @Test
+      void testZeroFontSizeThrowsIAE() {
+        assertThrows(
+            IllegalArgumentException.class, () -> fontMetrics.getOptionalCharacterWidth('x', 0));
+      }
+
+      @ParameterizedTest
+      @ValueSource(ints = {1, 3, 7, 11, 42, Integer.MAX_VALUE})
+      void testPositiveFontSizeDoesNotThrow(final int fontSize) {
+        assertDoesNotThrow(() -> fontMetrics.getOptionalCharacterWidth('x', fontSize));
+      }
+
+      @Test
+      void testUnsupportedFontSizeReturnsEmpty() {
+        assertTrue(fontMetrics.getOptionalCharacterWidth('x', 11).isEmpty());
+      }
+
+      @Test
+      void testSupportedFontSizeReturnsExpectedWidth() {
+        assertEquals(42d, fontMetrics.getOptionalCharacterWidth('x', 7).orElseThrow());
+      }
+    }
+  }
 }
