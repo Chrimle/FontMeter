@@ -75,7 +75,6 @@
         <maven.compiler.target>21</maven.compiler.target>
         <!-- === Spotless === -->
         <spotless.check.skip>false</spotless.check.skip>
-        <spotless-maven-plugin.version>3.1.0</spotless-maven-plugin.version>
         <!-- === Dependency Versions === -->
         <junit-jupiter.version>6.0.1</junit-jupiter.version>
     </properties>
@@ -96,7 +95,6 @@
             <plugin>
                 <groupId>com.diffplug.spotless</groupId>
                 <artifactId>spotless-maven-plugin</artifactId>
-                <version>${spotless-maven-plugin.version}</version>
                 <configuration>
                     <!-- Skips the spotless:apply when running in GitHub Actions -->
                     <skip>${env.CI}</skip>
