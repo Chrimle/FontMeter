@@ -2,6 +2,8 @@ package io.github.chrimle.fontmeter.fonts;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Represents a <em>font</em>, and its <em>metrics (width)</em> for each supported {@link Character}
@@ -11,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 0.1.0
  * @author Chrimle
  */
+@NullMarked
 public final class FontMetrics implements IFontMetrics {
 
   private final ConcurrentHashMap<Integer, Map<Character, Double>> fontSizeMap;
@@ -41,7 +44,7 @@ public final class FontMetrics implements IFontMetrics {
    * @since 0.1.0
    */
   @Override
-  public Double getNullableCharacterWidth(char character, int fontSize)
+  public @Nullable Double getNullableCharacterWidth(char character, int fontSize)
       throws IllegalArgumentException {
     if (fontSize < 1) throw new IllegalArgumentException("`fontSize` MUST be positive");
     final var widthMap = fontSizeMap.get(fontSize);
@@ -60,7 +63,7 @@ public final class FontMetrics implements IFontMetrics {
       implements BaselineStep, PreCalculateStep, OnDemandCalculateStep, BuildStep {
 
     private int baseFontSize;
-    private Map<Character, Double> baselineMap;
+    private Map<Character, Double> baselineMap = Map.of();
 
     private FontMetricsBuilder() {}
 

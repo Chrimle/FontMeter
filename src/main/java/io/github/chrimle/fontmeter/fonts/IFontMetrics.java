@@ -2,6 +2,8 @@ package io.github.chrimle.fontmeter.fonts;
 
 import java.util.Map;
 import java.util.Optional;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Just an abstraction-layer for {@link FontMetrics}. Contains the interfaces for the {@link
@@ -10,6 +12,7 @@ import java.util.Optional;
  * @author Chrimle
  * @since 0.1.0
  */
+@NullMarked
 public sealed interface IFontMetrics permits FontMetrics {
 
   /**
@@ -27,7 +30,7 @@ public sealed interface IFontMetrics permits FontMetrics {
    * @throws IllegalArgumentException if {@code fontSize} is negative, or zero.
    * @since 0.1.0
    */
-  default Double getNullableCharacterWidth(final Character character, final int fontSize)
+  default @Nullable Double getNullableCharacterWidth(final Character character, final int fontSize)
       throws NullPointerException, IllegalArgumentException {
     return getNullableCharacterWidth(character.charValue(), fontSize);
   }
@@ -45,7 +48,7 @@ public sealed interface IFontMetrics permits FontMetrics {
    * @throws IllegalArgumentException if {@code fontSize} is negative, or zero.
    * @since 0.1.0
    */
-  Double getNullableCharacterWidth(final char character, final int fontSize)
+  @Nullable Double getNullableCharacterWidth(final char character, final int fontSize)
       throws IllegalArgumentException;
 
   /**
